@@ -9,23 +9,27 @@
 <preferences/>
 <find_panel_settings/>
 <vnodes>
-<v t="amd.20160714225308.1"><vh>@settings</vh>
+<v t="amd.20160714225308.1" a="E"><vh>@settings</vh>
 <v t="amd.20160714225308.2"><vh>@data qt-gui-plugin-style-sheet</vh></v>
 <v t="amd.20160714225308.3"><vh>@string initial_split_orientation = horizontal</vh></v>
+<v t="leo.20190529225654.1"><vh>newHeadline</vh></v>
+<v t="leo.20190529225705.1"><vh>newHeadline</vh></v>
+<v t="leo.20190529225728.1"><vh>newHeadline</vh></v>
+<v t="leo.20190529225808.1"><vh>newHeadline</vh></v>
 </v>
-<v t="leo.20180702145534.1"><vh>wsgi start/stop</vh>
+<v t="leo.20180702145534.1" a="E"><vh>wsgi start/stop</vh>
 <v t="leo.20180702142719.1"><vh>@button start wsgi</vh></v>
 <v t="leo.20180702142849.1"><vh>@button stop wsgi</vh></v>
 </v>
-<v t="leo.20180702145555.1"><vh>http start/stop</vh>
+<v t="leo.20180702145555.1" a="E"><vh>http start/stop</vh>
 <v t="leo.20180702145442.1"><vh>@button start http.server</vh></v>
 <v t="leo.20180702145458.1"><vh>@button stop http.server</vh></v>
 </v>
 <v t="leo.20180703102027.1"><vh>@edit README.md</vh></v>
-<v t="amd.20160714225245.2"><vh>about cmsimfly</vh>
+<v t="amd.20160714225245.2" a="E"><vh>about cmsimfly</vh>
 <v t="amd.20160714230137.1"><vh>@edit .gitignore</vh></v>
 <v t="amd.20160714230155.1"><vh>@edit LICENSE</vh></v>
-<v t="amd.20160715000709.1"><vh>註解</vh>
+<v t="amd.20160715000709.1" a="E"><vh>註解</vh>
 <v t="amd.20160715211540.1"><vh>處理 url 與 edit</vh></v>
 <v t="amd.20160715213810.1"><vh>必須處理 downloads 與 images 目錄</vh></v>
 <v t="leo.20180625155103.1" a="E"><vh>改為 pybean based</vh>
@@ -36,7 +40,7 @@
 <v t="leo.20180712144340.1"><vh>改回手動轉靜態網頁</vh></v>
 </v>
 </v>
-<v t="leo.20180701102916.1"><vh>2018Summer 改版</vh>
+<v t="leo.20180701102916.1" a="E"><vh>2018Summer 改版</vh>
 <v t="leo.20180702104314.1"><vh>整合設定檔案</vh></v>
 <v t="leo.20180701205822.1"><vh>editorhead 修改</vh></v>
 <v t="leo.20180701212101.1"><vh>有關 Cango library</vh></v>
@@ -53,7 +57,7 @@
 <v t="leo.20180625155248.1"><vh>@edit pybean.py</vh></v>
 <v t="leo.20180625155728.1"><vh>@edit schema.sql</vh></v>
 <v t="amd.20160718130611.1"><vh>@edit .gitignore</vh></v>
-<v t="amd.20160717222221.1"><vh>@path static</vh>
+<v t="amd.20160717222221.1" a="E"><vh>@path static</vh>
 <v t="leo.20180718091411.1"><vh>@edit cmsimply.css</vh></v>
 <v t="amd.20160717222242.1"><vh>@edit axuploader.js</vh></v>
 <v t="amd.20160718125932.1"><vh>@edit viewstl.html</vh></v>
@@ -64,7 +68,7 @@
 <v t="amd.20160714230122.1"><vh>wsgi declarations</vh></v>
 </v>
 <v t="amd.20160714230833.1" a="E"><vh>編輯 flaskapp.py</vh>
-<v t="amd.20160714230833.2"><vh>@clean flaskapp.py</vh>
+<v t="amd.20160714230833.2" a="E"><vh>@clean flaskapp.py</vh>
 <v t="amd.20160714230833.3"><vh>&lt;&lt;declarations&gt;&gt;</vh></v>
 <v t="amd.20160714233131.1"><vh>checkLogin</vh></v>
 <v t="amd.20160717235504.1"><vh>delete_file</vh></v>
@@ -2787,6 +2791,90 @@ bug 180726</t>
     return head_list, level_list, page_list
 
 
+</t>
+<t tx="leo.20190529225654.1">@color
+@language python
+
+import os
+# 確定程式檔案所在目錄, 在 Windows 有最後的反斜線
+_curdir = os.path.join(os.getcwd(), os.path.dirname(__file__))
+# 設定在 uwsgi 與近端的資料儲存目錄
+config_dir = _curdir + "/config/"
+static_dir = _curdir + "/static"
+class Init(object):
+    # uwsgi as static class variable, can be accessed by Init.uwsgi
+    uwsgi = False
+    def __init__(self):
+        # hope to create downloads and images directories　
+        if not os.path.isdir(_curdir+"/downloads"):
+            try:
+                os.makedirs(_curdir+"/downloads")
+            except:
+                print("mkdir error")
+        if not os.path.isdir(_curdir+"/images"):
+            try:
+                os.makedirs(_curdir+"/images")
+            except:
+                print("mkdir error")
+
+
+</t>
+<t tx="leo.20190529225705.1">@color
+@language python
+
+import os
+# 確定程式檔案所在目錄, 在 Windows 有最後的反斜線
+_curdir = os.path.join(os.getcwd(), os.path.dirname(__file__))
+# 設定在 uwsgi 與近端的資料儲存目錄
+config_dir = _curdir + "/config/"
+static_dir = _curdir + "/static"
+class Init(object):
+    # uwsgi as static class variable, can be accessed by Init.uwsgi
+    uwsgi = False
+    def __init__(self):
+        # hope to create downloads and images directories　
+        if not os.path.isdir(_curdir+"/downloads"):
+            try:
+                os.makedirs(_curdir+"/downloads")
+            except:
+                print("mkdir error")
+        if not os.path.isdir(_curdir+"/images"):
+            try:
+                os.makedirs(_curdir+"/images")
+            except:
+                print("mkdir error")
+
+
+</t>
+<t tx="leo.20190529225728.1">@killcolor
+
+siteTitle:2018 Fall 40623224 Personal Website
+password:c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec</t>
+<t tx="leo.20190529225808.1">@color
+@language python
+
+from setuptools import setup
+
+setup(name='CMSimfly 2016 Project',
+      version='1.0',
+      description='OpenShift App',
+      author='KMOL',
+      author_email='course@mde.tw',
+      url='https://www.python.org/community/sigs/current/distutils-sig',
+ install_requires=['Flask&gt;=0.10.1'],
+#install_requires=['Flask&gt;=0.10.1', 'MarkupSafe', 'github3.py', 'authomatic','pytz', 'beautifulsoup4', 'pymysql', 'peewee'],
+     )
+     
+'''
+Flask 為網際程式框架
+MarkupSafe
+github3.py 為 Github 的 API 程式庫, 可以用程式方法管理特定倉儲的 collaborator list
+authomatic 為 oauth 2 API 程式庫, 可以讓使用者透過 Gmail, Facebook, Github 或 Twitter 帳號登入
+pytz 為 timezone 模組
+beautifulsoup4 用來處理 html 與 xml 相關標註內容
+pymysql 為 MySQL 程式庫
+peewee 則為 ORM
+'''
 </t>
 </tnodes>
 </leo_file>
